@@ -42,6 +42,15 @@ const VIEW_GROUPS = [
     sections: ["messaging", "voice"],
     containerId: "messagingSections",
   },
+  {
+    id: "advanced",
+    label: "Advanced",
+    title: "Advanced & Diagnostics",
+    subtitle: "Debugging flags and smoke testing endpoints",
+    icon: "🛠️",
+    sections: ["diagnostics", "smoke"],
+    containerId: "advancedSections",
+  },
 ];
 
 // Section IDs for model fields that the hero card handles directly
