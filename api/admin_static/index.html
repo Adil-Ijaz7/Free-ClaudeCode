@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free Claude Code — OpenRouter Dashboard</title>
+    <meta name="description" content="Configure your AI coding agent powered by OpenRouter" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/admin/assets/admin.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <h1>Free Claude Code</h1>
+            <p>OpenRouter Dashboard</p>
+          </div>
+        </div>
+        <nav id="sectionNav" class="section-nav" aria-label="Admin views"></nav>
+        <div class="sidebar-footer">
+          <a href="https://openrouter.ai/models" target="_blank" rel="noopener" class="sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Browse Models
+          </a>
+          <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            API Keys
+          </a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2 id="pageTitle">Model Configuration</h2>
+            <p class="topbar-subtitle" id="pageSubtitle">Configure your OpenRouter models and settings</p>
+          </div>
+          <div id="serverStatus" class="server-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Checking...</span>
+          </div>
+        </header>
+
+        <div id="adminViews" class="admin-views">
+          <!-- Model Config View -->
+          <section id="view-model_config" class="admin-view active" data-view="model_config">
+            <!-- Model Selector Card -->
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <div class="hero-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                </div>
+                <div>
+                  <h3>Active Model</h3>
+                  <p>Type any OpenRouter model name — e.g. <code>open_router/anthropic/claude-sonnet-4-20250514</code></p>
+                </div>
+              </div>
+              <div class="model-input-group">
+                <label for="hero-model-input">Default Model</label>
+                <div class="model-input-wrapper">
+                  <input type="text" id="hero-model-input" class="model-input" placeholder="open_router/provider/model-name" spellcheck="false" autocomplete="off" />
+                  <button type="button" id="browseModelsBtn" class="browse-btn" title="Browse cached models">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  </button>
+                </div>
+                <div id="modelSuggestions" class="model-suggestions" hidden></div>
+                <div class="model-help">
+                  Browse models at <a href="https://openrouter.ai/models" target="_blank" rel="noopener">openrouter.ai/models</a>
+                  — copy the model ID and prefix with <code>open_router/</code>
+                </div>
+              </div>
+              <div class="model-tiers">
+                <div class="tier-field">
+                  <label for="tier-opus">Opus Override <span class="tier-hint">optional</span></label>
+                  <input type="text" id="tier-opus" class="model-input tier-input" placeholder="Leave blank to use default model" spellcheck="false" autocomplete="off" />
+                </div>
+                <div class="tier-field">
+                  <label for="tier-sonnet">Sonnet Override <span class="tier-hint">optional</span></label>
+                  <input type="text" id="tier-sonnet" class="model-input tier-input" placeholder="Leave blank to use default model" spellcheck="false" autocomplete="off" />
+                </div>
+                <div class="tier-field">
+                  <label for="tier-haiku">Haiku Override <span class="tier-hint">optional</span></label>
+                  <input type="text" id="tier-haiku" class="model-input tier-input" placeholder="Leave blank to use default model" spellcheck="false" autocomplete="off" />
+                </div>
+              </div>
+            </div>
+
+            <div id="modelConfigSections" class="form-sections" aria-label="Model configuration"></div>
+          </section>
+
+          <!-- Providers View -->
+          <section id="view-providers" class="admin-view" data-view="providers" hidden>
+            <section class="provider-strip" aria-label="Provider status">
+              <div class="strip-header">
+                <h3>OpenRouter</h3>
+                <button type="button" id="refreshModelsBtn" class="secondary-button">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                  Refresh Models
+                </button>
+              </div>
+              <div id="providerGrid" class="provider-grid"></div>
+            </section>
+            <div id="providersSections" class="form-sections" aria-label="Provider configuration"></div>
+          </section>
+
+          <!-- Messaging View -->
+          <section id="view-messaging" class="admin-view" data-view="messaging" hidden>
+            <div id="messagingSections" class="form-sections" aria-label="Messaging configuration"></div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="action-bar">
+        <div class="action-meta">
+          <strong id="dirtyState">No changes</strong>
+          <span id="configPath"></span>
+        </div>
+        <div id="messageArea" class="message-area"></div>
+        <div class="action-buttons">
+          <button id="validateButton" class="secondary-button" type="button">Validate</button>
+          <button id="applyButton" class="primary-button" type="button" disabled>Apply</button>
+        </div>
+      </footer>
+    </div>
+    <script src="/admin/assets/admin.js"></script>
+  </body>
+</html>
