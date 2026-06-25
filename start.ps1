@@ -48,4 +48,9 @@ Write-Host '  After the server starts, open another terminal and run:' -Foregrou
 Write-Host '    .\claude.ps1' -ForegroundColor Green
 Write-Host ''
 
-uv run fcc-server
+Push-Location $PSScriptRoot
+try {
+    uv run fcc-server
+} finally {
+    Pop-Location
+}

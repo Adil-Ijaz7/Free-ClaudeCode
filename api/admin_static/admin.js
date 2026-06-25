@@ -111,7 +111,7 @@ async function api(path, options = {}) {
 
 async function load() {
   showMessage("Loading configuration...");
-  const config = await api("/admin/api/config");
+  const config = await api(`/admin/api/config?t=${Date.now()}`);
   state.config = config;
   state.fields = new Map(config.fields.map((f) => [f.key, f]));
 
