@@ -82,7 +82,7 @@ async def test_cleanup_provider():
 
         await cleanup_provider()
 
-        provider._client.close.assert_called_once()
+        provider._client.aclose.assert_called_once()
 
 
 @pytest.mark.asyncio
@@ -186,7 +186,7 @@ async def test_cleanup_provider_close_raises():
         provider = get_provider()
         assert isinstance(provider, OpenRouterProvider)
         provider._client = AsyncMock()
-        provider._client.close = AsyncMock(side_effect=RuntimeError("cleanup failed"))
+        provider._client.aclose = AsyncMock(side_effect=RuntimeError("cleanup failed"))
 
         # Should propagate the error
         with pytest.raises(RuntimeError, match="cleanup failed"):
@@ -236,7 +236,7 @@ async def test_cleanup_provider_cleans_all():
 
         await cleanup_provider()
 
-        openrouter._client.close.assert_called_once()
+        openrouter._client.aclose.assert_called_once()
 
 
 def test_resolve_provider_per_app_uses_separate_registries() -> None:

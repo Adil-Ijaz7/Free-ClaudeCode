@@ -195,16 +195,7 @@ CAPABILITY_CONTRACTS: tuple[CapabilityContract, ...] = (
             "test_provider_reasoning_tool_continuation_e2e",
         ),
     ),
-    CapabilityContract(
-        "streaming_conversion",
-        "subagent_task_control",
-        "subagent_control",
-        "core.anthropic.SSEBuilder",
-        "Task tool call arguments",
-        "run_in_background=false",
-        "invalid JSON flushed as safe object",
-        ("tests/providers/test_subagent_interception.py",),
-    ),
+
     CapabilityContract(
         "request_behavior",
         "local_optimizations",

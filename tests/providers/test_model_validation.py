@@ -75,7 +75,11 @@ async def test_openrouter_lists_only_tool_capable_models() -> None:
         )
 
     mock_get.assert_awaited_once_with(
-        "/models", headers={"Authorization": "Bearer open-router-key"}
+        "/models", headers={
+            "Authorization": "Bearer open-router-key",
+            "HTTP-Referer": "https://github.com/anthropics/claude-code",
+            "X-Title": "Free Claude Code",
+        }
     )
 
 

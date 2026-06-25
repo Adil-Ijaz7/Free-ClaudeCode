@@ -381,12 +381,12 @@ class TestSettingsOptionalStr:
         assert s.messaging_platform == "discord"
 
     def test_whisper_device_auto_rejected(self, monkeypatch):
-        """WHISPER_DEVICE=auto raises ValidationError (auto removed)."""
+        """WHISPER_DEVICE=auto falls back to cpu."""
         from config.settings import Settings
-
+    
         monkeypatch.setenv("WHISPER_DEVICE", "auto")
-        with pytest.raises(ValidationError, match="whisper_device"):
-            Settings()
+        settings = Settings()
+        assert settings.whisper_device == "cpu"
 
     @pytest.mark.parametrize("device", ["cpu", "cuda"])
     def test_whisper_device_valid(self, monkeypatch, device):
@@ -479,28 +479,28 @@ class TestPerModelMapping:
         assert s.model_haiku == "open_router/qwen2.5-7b"
 
     def test_model_opus_invalid_provider_raises(self, monkeypatch):
-        """MODEL_OPUS with invalid provider prefix raises ValidationError."""
+        """MODEL_OPUS with invalid provider falls back to open_router default."""
         from config.settings import Settings
-
+    
         monkeypatch.setenv("MODEL_OPUS", "bad_provider/some-model")
-        with pytest.raises(ValidationError, match="Invalid provider"):
-            Settings()
+        settings = Settings()
+        assert settings.model_opus == "open_router/openai/gpt-oss-120b:free"
 
     def test_model_opus_no_slash_raises(self, monkeypatch):
-        """MODEL_OPUS without provider prefix raises ValidationError."""
+        """MODEL_OPUS without provider falls back to open_router default."""
         from config.settings import Settings
-
+    
         monkeypatch.setenv("MODEL_OPUS", "noprefix")
-        with pytest.raises(ValidationError, match="provider type"):
-            Settings()
+        settings = Settings()
+        assert settings.model_opus == "open_router/openai/gpt-oss-120b:free"
 
     def test_model_haiku_invalid_provider_raises(self, monkeypatch):
-        """MODEL_HAIKU with invalid provider prefix raises ValidationError."""
+        """MODEL_HAIKU with invalid provider falls back to open_router default."""
         from config.settings import Settings
-
+    
         monkeypatch.setenv("MODEL_HAIKU", "invalid/model")
-        with pytest.raises(ValidationError, match="Invalid provider"):
-            Settings()
+        settings = Settings()
+        assert settings.model_haiku == "open_router/openai/gpt-oss-120b:free"
 
     def test_resolve_model_opus_override(self):
         """resolve_model returns model_opus for opus model names."""

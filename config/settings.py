@@ -80,23 +80,6 @@ class Settings(BaseSettings):
     # ==================== OpenRouter Config ====================
     open_router_api_key: str = Field(default="", validation_alias="OPENROUTER_API_KEY")
 
-    # ==================== Dummy Provider Config for Smoke Tests ====================
-    nvidia_nim_api_key: str = Field(default="", validation_alias="NVIDIA_NIM_API_KEY")
-    mistral_api_key: str = Field(default="", validation_alias="MISTRAL_API_KEY")
-    codestral_api_key: str = Field(default="", validation_alias="CODESTRAL_API_KEY")
-    deepseek_api_key: str = Field(default="", validation_alias="DEEPSEEK_API_KEY")
-    kimi_api_key: str = Field(default="", validation_alias="KIMI_API_KEY")
-    lm_studio_base_url: str = Field(default="", validation_alias="LM_STUDIO_BASE_URL")
-    llamacpp_base_url: str = Field(default="", validation_alias="LLAMACPP_BASE_URL")
-    ollama_base_url: str = Field(default="", validation_alias="OLLAMA_BASE_URL")
-    wafer_api_key: str = Field(default="", validation_alias="WAFER_API_KEY")
-    fireworks_api_key: str = Field(default="", validation_alias="FIREWORKS_API_KEY")
-    opencode_api_key: str = Field(default="", validation_alias="OPENCODE_API_KEY")
-    zai_api_key: str = Field(default="", validation_alias="ZAI_API_KEY")
-    gemini_api_key: str = Field(default="", validation_alias="GEMINI_API_KEY")
-    groq_api_key: str = Field(default="", validation_alias="GROQ_API_KEY")
-    cerebras_api_key: str = Field(default="", validation_alias="CEREBRAS_API_KEY")
-
     # ==================== Messaging Platform Selection ====================
     # Valid: "telegram" | "discord" | "none"
     messaging_platform: str = Field(

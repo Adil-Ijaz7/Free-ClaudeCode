@@ -112,7 +112,9 @@ class AnthropicMessagesTransport(BaseProvider):
 
     async def cleanup(self) -> None:
         """Release HTTP client resources."""
-        await self._client.aclose()
+        client = getattr(self, "_client", None)
+        if client is not None:
+            await client.aclose()
 
     async def list_model_ids(self) -> frozenset[str]:
         """Return model ids from an OpenAI-compatible ``/models`` endpoint."""
