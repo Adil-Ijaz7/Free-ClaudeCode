@@ -64,7 +64,7 @@ Once running, open your browser and navigate to the **Admin Dashboard**:
 👉 **`http://127.0.0.1:8082/admin`**
 
 <div align="center">
-  <img src="docs/assets/admin_dashboard.png" alt="Admin Dashboard" width="800">
+  <img src="docs/assets/admin_dashboard.jpeg" alt="Admin Dashboard" width="800">
   <p><em>Admin Dashboard: Manage your OpenRouter configuration and monitor server status.</em></p>
 </div>
 
